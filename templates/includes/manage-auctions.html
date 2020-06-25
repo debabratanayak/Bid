@@ -1,0 +1,72 @@
+{{define "content"}}
+<section class="jumbotron text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+          <a class="navbar-brand col-sm-4 col-md-2 mr-0" href="#">Auctions List</a>
+          <ul class="navbar-nav px-2">
+            <li class="nav-item text-nowrap">
+              <a class="nav-link" href="/admin/auction/create">+ Add Auction</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <h1 class="h2">Dashboard</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group mr-2">
+              <button class="btn btn-sm btn-outline-secondary">Share</button>
+              <button class="btn btn-sm btn-outline-secondary">Export</button>
+              <button class="btn btn-sm btn-outline-secondary"><a href="/admin/auction/list">Auctions</a></button>
+            </div>
+            <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+              <span data-feather="calendar"></span>
+              This week
+            </button>
+          </div>
+        </div>
+        <h2>Auction Details</h2>
+        <h1>{{.PageTitle}}</h1>
+        <div class="table-responsive">
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Product ID</th>
+                <th>Start Time</th>
+                <th>Stop Time</th>
+                <th>Status</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              {{range $k, $v := .Auctions}}
+              <tr>
+                <td><b>{{ $v.ID}}</td>
+                <td><b>{{ $v.ProductID}}</td>
+                <td><b>{{ $v.StartTime}}</td>
+                <td><b>{{ $v.StopTime}}</td>
+                <td><b>{{ $v.Status}}</td>
+                <td><button class="btn btn-sm btn-outline-secondary" onclick="location.href='/admin/auction/update/{{ $v.ID}}';">Edit</button></td>
+                <td> <button class="btn btn-sm btn-outline-secondary" onclick="location.href='/admin/auction/delete/{{ $v.ID}}';">Delete</button></td>
+              </tr>
+              {{end}}
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  </div>
+  </div>
+</section>
+{{end}}
